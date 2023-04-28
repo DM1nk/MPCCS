@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.7.0;
+pragma solidity ^0.8.0;
 
 import "./Shared.sol";
 
@@ -15,7 +15,6 @@ contract HospitalA {
     uint256 requestsCount; // TODO: find a better way than requestsCount
     mapping(uint256 => Shared.Request) public requests;
     mapping(address => Shared.Verifier) public verifiers;
-
     //
     // Modifier
     //
@@ -113,12 +112,6 @@ contract HospitalA {
     event respondedRequest(uint256 requestId);
     event grantedRequest(uint256 requestId);
 
-    // event test(bytes32 kh);
-
-    // function testing(uint256 key) public {
-    //     emit test(keccak256(abi.encode(key)));
-    // }
-
     function respondRequest(
         uint256 requestId,
         bool grant,
@@ -151,7 +144,6 @@ contract HospitalA {
     }
 
     event selfRequest(uint256 requestId);
-
     function requestOnBehalf(
         bytes32 bundleHash,
         uint256 minVerifierCount,
@@ -234,8 +226,7 @@ contract HospitalA {
 
     event tokenRequester(bytes32 tokenID, address verifierAddress);
     event tokenVerifier(bytes32 tokenID, address requesterAddress);
-    event mpcInit(bytes32 tokenID ,address requesterAddress);
-    event mpcJoin(bytes32 tokenID ,address requesterAddress);
+
     // Verifiers response functions (direct request)
     function addDirectResponse(uint256 requestId, bytes32 key)
     public
